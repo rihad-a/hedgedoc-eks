@@ -1,0 +1,16 @@
+server:
+  extraArgs:
+    - --insecure
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    annotations:
+      nginx.org/hsts: "false"
+      cert-manager.io/cluster-issuer: issuer
+    hostname: argocd.networking.rihad.co.uk
+    tls:
+      - secretName: argocd-server-tls
+        hosts:
+          - argocd.networking.rihad.co.uk
