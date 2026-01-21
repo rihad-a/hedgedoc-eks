@@ -3,6 +3,7 @@ prometheus:
     enabled: true
     ingressClassName: "nginx"
     annotations:
+      nginx.org/hsts: "false"
       cert-manager.io/cluster-issuer: issuer
     hosts: 
       - prometheus.networking.rihad.co.uk
@@ -16,6 +17,7 @@ grafana:
     enabled: true
     ingressClassName: nginx
     annotations:
+      nginx.org/hsts: "false"
       cert-manager.io/cluster-issuer: issuer
     hosts: 
       - grafana.networking.rihad.co.uk
@@ -23,6 +25,7 @@ grafana:
       - secretName: grafana-tls
         hosts:
           - grafana.networking.rihad.co.uk
+
 
 
 
