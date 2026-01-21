@@ -1,4 +1,5 @@
 provider: aws
+policy: sync
 
 env:
 - name: AWS_DEFAULT_REGION
