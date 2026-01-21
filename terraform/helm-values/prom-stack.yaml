@@ -7,7 +7,7 @@ prometheus:
     hosts: 
       - prometheus.networking.rihad.co.uk
     tls:
-       - secretName: prometheus-general-tls
+       - secretName: prometheus-tls
          hosts:
            - prometheus.networking.rihad.co.uk
 
@@ -20,9 +20,9 @@ grafana:
     hosts: 
       - grafana.networking.rihad.co.uk
     tls:
-      - secretName: grafana-general-tls
+      - secretName: grafana-tls
         hosts:
-        - grafana.networking.rihad.co.uk
+          - grafana.networking.rihad.co.uk
 
 
 
