@@ -5,9 +5,5 @@ env:
 - name: AWS_DEFAULT_REGION
   value: eu-west-2
 
-serviceAccount:
-  create: true
-  name: external-dns
-
 domainFilters:
 - networking.rihad.co.uk
