@@ -59,6 +59,6 @@ variable "extdns-sa" {
 
 variable "ekscluster-name" {
   type        = string
-  description = "The name of the EKS cluster"
-}
+  description = "The EKS cluster name"
 
+}
