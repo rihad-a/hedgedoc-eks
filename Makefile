@@ -1,7 +1,6 @@
 addrepo-nginx:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx \
 
-
 install-nginx:
 	cd terraform && \
 	helm install nginx-ingress ingress-nginx/ingress-nginx \
@@ -16,7 +15,6 @@ install-extdns:
         --set image.tag=0.18.0-debian-12-r4 \
          --namespace external-dns \
         --create-namespace \
-        --set crds.enabled=true
 
 install-certman:
 	cd terraform && \
@@ -40,13 +38,13 @@ addrepo-argocd:
 	helm repo add argo \
     https://argoproj.github.io/argo-helm
 
-
 install-argocd:
 	cd terraform && \
-	helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f helm-values/prom-stack.yaml \
-        --version 81.1.0 \
-        --namespace kube-prometheus-stack \
+	helm install argo-cd argo/argo-cd -f helm-values/argocd.yaml \
+        --version 9.3.4 \
+        --namespace argo-cd \
         --create-namespace \
+		--set crds.enabled=true \
 
 apply-argoapp:
 	kubectl apply -f argo-cd/apps-argo.yaml \
@@ -54,14 +52,35 @@ apply-argoapp:
 uninstall-nginx:
 	helm uninstall nginx-ingress -n nginx-ingress \
 
-uninstall-certman: #CRD
+delete-issuer:
+	kubectl delete -f cert-man/issuer.yaml \
+
+uninstall-certman: 
 	helm uninstall cert-manager -n cert-manager \
+
+deletecrd-certman:
+	kubectl delete crd \
+		challenges.acme.cert-manager.io \
+		orders.acme.cert-manager.io \
+    	certificaterequests.cert-manager.io \
+    	certificates.cert-manager.io \
+    	clusterissuers.cert-manager.io \
+		issuers.cert-manager.io \
 
 uninstall-kubepromstack:
 	helm uninstall kube-prometheus-stack -n kube-prometheus-stack \
 
-uninstall-argocd: #CRD
+delete-argoapp:
+	kubectl delete -f argo-cd/apps-argo.yaml \
+
+uninstall-argocd:
 	helm uninstall argo-cd -n argo-cd \
+
+deletecrd-argocd:
+	kubectl delete crd \
+		applications.argoproj.io  \
+    	applicationsets.argoproj.io \
+    	appprojects.argoproj.io \
 
 uninstall-extdns:
 	helm uninstall external-dns -n external-dns \
