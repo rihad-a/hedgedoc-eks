@@ -66,6 +66,6 @@ extdns-sa                                = var.extdns-sa
 
 
   # Use these outputs
-  ekscluster-name                          = module.eks.ekscluster-name
+  ekscluster-name                             = module.eks.ekscluster-name
 
 }
