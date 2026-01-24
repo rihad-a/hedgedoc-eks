@@ -14,7 +14,7 @@ env:
   CLUSTER_NAME : "eks-cluster"
 
 jobs:
-  DockerImageBuildAndPush:
+  HelmAdd:
     runs-on: ubuntu-24.04
     steps:
 
@@ -31,7 +31,10 @@ jobs:
     - name: Setting EKS cluster config 
       run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
 
+    - name: Changing directory to scripts
+      run:  cd scripts
+
     - name: Running add.sh script for all Helm resources
-      run: -chdir=scripts sh scripts/add.sh
+      run:  sh scripts/add.sh
 
       

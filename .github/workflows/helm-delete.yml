@@ -14,7 +14,7 @@ env:
   CLUSTER_NAME : "eks-cluster"
 
 jobs:
-  DockerImageBuildAndPush:
+  HelmDelete:
     runs-on: ubuntu-24.04
     steps:
 
@@ -31,7 +31,10 @@ jobs:
     - name: Setting EKS cluster config 
       run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
 
+    - name: Changing directory to scripts
+      run:  cd scripts
+
     - name: Running delete.sh script for all Helm resources
-      run: -chdir=scripts sh scripts/delete.sh
+      run:  sh scripts/delete.sh
 
       
