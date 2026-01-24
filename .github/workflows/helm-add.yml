@@ -33,17 +33,54 @@ jobs:
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
         helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
     
-    - name: Adding NGINX Repo
+    - name: Installing NGINX Ingress
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
         cd terraform
         helm install nginx-ingress ingress-nginx/ingress-nginx --version 4.14.1 --namespace nginx-ingress --create-namespace
     
-    - name: Adding NGINX Repo
+    - name: Installing External DNS
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
+        cd terraform
         helm install external-dns oci://registry-1.docker.io/bitnamicharts/external-dns -f helm-values/external-dns.yaml --set image.repository=bitnamilegacy/external-dns --set image.tag=0.18.0-debian-12-r4 --namespace external-dns --create-namespace
+
+    - name: Installing Certificate Manager
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
+        cd terraform
+        helm install cert-manager oci://quay.io/jetstack/charts/cert-manager -f helm-values/cert-manager.yaml --version v1.19.2 --namespace cert-manager --create-namespace --set crds.enabled=true
     
+    - name: Applying the issuer
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
+        kubectl apply -f cert-man/issuer.yaml 
+
+    - name: Installing Kube-Prometheus-Stack
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
+        cd terraform
+        helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f helm-values/prom-stack.yaml --version 81.1.0 --namespace kube-prometheus-stack --create-namespace
+
+    - name: Adding ArgoCD Repo
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
+        helm repo add argo https://argoproj.github.io/argo-helm
+        
+    - name: Installing ArgoCD
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
+        cd terraform
+        helm install argo-cd argo/argo-cd -f helm-values/argocd.yaml --version 9.3.4 --namespace argo-cd --create-namespace --set crds.enabled=true
+     
+    - name: Applying the Argo App
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
+        kubectl apply -f argo-cd/apps-argo.yaml
+
+
+    
+     
       
      
 
