@@ -46,7 +46,8 @@ jobs:
       - name: Running a Terraform Apply
         run: terraform -chdir=terraform/deployment apply -auto-approve tfplan
 
-      - name: Creating an access entry for the EKS cluster
-        run: aws eks create-access-entry --cluster-name ${{ env.CLUSTER_NAME }} --principal-arn ${{ secrets.GitHubActionsRole }} --type STANDARD        
+    # ONLY RUN THIS COMMAND FOR THE FIRST TIME YOU SETUP YOUR CLUSTER
+     # - name: Creating an access entry for the EKS cluster
+     #   run: aws eks create-access-entry --cluster-name ${{ env.CLUSTER_NAME }} --principal-arn ${{ secrets.GitHubActionsRole }} --type STANDARD        
     
 
