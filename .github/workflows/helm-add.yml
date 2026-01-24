@@ -37,12 +37,14 @@ jobs:
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
         cd terraform
-        KUBECONFIG=/home/runner/.kube/config helm install nginx-ingress ingress-nginx/ingress-nginx --version 4.14.1 --namespace nginx-ingress --create-namespace --kube-context /home/runner/.kube/config
+        aws eks create-access-entry --cluster-name ${{ env.CLUSTER_NAME }} --principal-arn ${{ secrets.GitHubActionsRole }} --type STANDARD
+        KUBECONFIG=/home/runner/.kube/config helm install nginx-ingress ingress-nginx/ingress-nginx --version 4.14.1 --namespace nginx-ingress --create-namespace --kube-context ${{ env.CLUSTER_NAME }}
     
     - name: Adding NGINX Repo
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
-        KUBECONFIG=/home/runner/.kube/config helm install external-dns oci://registry-1.docker.io/bitnamicharts/external-dns -f helm-values/external-dns.yaml --set image.repository=bitnamilegacy/external-dns --set image.tag=0.18.0-debian-12-r4 --namespace external-dns --create-namespace --kube-context /home/runner/.kube/config
+        aws eks create-access-entry --cluster-name ${{ env.CLUSTER_NAME }} --principal-arn ${{ secrets.GitHubActionsRole }} --type STANDARD        
+        KUBECONFIG=/home/runner/.kube/config helm install external-dns oci://registry-1.docker.io/bitnamicharts/external-dns -f helm-values/external-dns.yaml --set image.repository=bitnamilegacy/external-dns --set image.tag=0.18.0-debian-12-r4 --namespace external-dns --create-namespace --kube-context ${{ env.CLUSTER_NAME }}
     
       
      
