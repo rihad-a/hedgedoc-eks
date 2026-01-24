@@ -28,13 +28,10 @@ jobs:
           role-session-name: GitHubActionsRole
           aws-region: ${{ env.AWS_REGION }}
 
-    - name: Setting EKS cluster config 
-      run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
-
-    - name: Changing directory to scripts
-      run:  cd scripts
-
     - name: Running add.sh script for all Helm resources
-      run:  sh scripts/add.sh
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
+        cd scripts
+        sh scripts/add.sh
 
       
