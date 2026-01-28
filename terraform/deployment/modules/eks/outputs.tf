@@ -2,10 +2,10 @@
 
 output "ekscluster" {
   description = "The EKS cluster"
-  value       = aws_eks_cluster.eks_labs
+  value       = aws_eks_cluster.eks
 }
 
 output "ekscluster-name" {
   description = "The name of the EKS cluster"
-  value       = aws_eks_cluster.eks_labs.name
+  value       = aws_eks_cluster.eks.name
 }
