@@ -1,3 +1,5 @@
+# App directory
+
 node_modules
 package-lock.json
 composer.phar
@@ -16,6 +18,7 @@ backups/
 *.log
 *.sqlite
 
+
 # ignore config files
 config.json
 .sequelizerc
@@ -31,9 +34,11 @@ site/
 
 # Yarn 2+ without zero-installs
 .pnp.*
-#.yarn/*
+.yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+
