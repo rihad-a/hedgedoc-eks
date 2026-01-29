@@ -35,15 +35,20 @@ spec:
                 secretKeyRef:
                   name: db
                   key: CMD_URL_ADDPORT
-            - name: ssl
-              value: "true"
           volumeMounts:
             - name: uploads-store
               mountPath: "/app/public/uploads"
+            - name: rds-ssl
+              mountPath: "/etc/ssl/certs/global-bundle.pem"
+              subPath: "global-bundle.pem"
+              readOnly: true
       volumes:
         - name: uploads-store
           emptyDir: {}
----
+        - name: rds-ssl
+          secret:
+            secretName: db
+
 
 apiVersion: v1
 kind: Service
@@ -63,7 +68,6 @@ spec:
       port: 8080
       targetPort: 3000
 
----
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
