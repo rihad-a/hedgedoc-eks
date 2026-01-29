@@ -19,29 +19,28 @@ spec:
           image: 291759414346.dkr.ecr.eu-west-2.amazonaws.com/eks-project:latest
           ports:
             - containerPort: 3000
-      env:
-      - name: CMD_DB_URL
-        valueFrom:
-          secretKeyRef:
-            name: db
-            key: CMD_DB_URL
-      - name: CMD_DOMAIN
-        valueFrom:
-          secretKeyRef:
-            name: db
-            key: CMD_DOMAIN
-      - name: CMD_URL_ADDPORT
-        valueFrom:
-          secretKeyRef:
-            name: db
-            key: CMD_URL_ADDPORT
-      volumeMounts:
-      - name: secret-volume
-        mountPath: "/public/uploads"
-    volumes:
-    - name: secret-volume
-      secret:
-        secretName: db
+          env:
+            - name: CMD_DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: CMD_DB_URL
+            - name: CMD_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: CMD_DOMAIN
+            - name: CMD_URL_ADDPORT
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: CMD_URL_ADDPORT
+          volumeMounts:
+            - name: uploads-store
+              mountPath: "/app/public/uploads"
+      volumes:
+        - name: uploads-store
+          emptyDir: {}
 ---
 
 apiVersion: v1
