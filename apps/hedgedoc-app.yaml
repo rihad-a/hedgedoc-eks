@@ -37,9 +37,7 @@ spec:
                   key: CMD_URL_ADDPORT
             - name: useSSL
               value: "true"
-            - name: sslCAPath
-              value: "/etc/ssl/certs/global-bundle.pem"
-            - name: sslCertPath
+            - name: NODE_EXTRA_CA_CERTS
               value: "/etc/ssl/certs/global-bundle.pem"
           volumeMounts:
             - name: uploads-store
