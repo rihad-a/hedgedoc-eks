@@ -38,7 +38,7 @@ spec:
           volumeMounts:
             - name: uploads-store
               mountPath: "/app/public/uploads"
-            - name: globaL-bundle-volume
+            - name: global-bundle-volume
               mountPath: "/app/etc/ssl/certs"
       volumes:
         - name: uploads-store
