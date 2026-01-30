@@ -48,6 +48,9 @@ spec:
         - name: rds-ssl
           secret:
             secretName: db
+            items:
+              - key: global-bundle.pem
+                path: global-bundle.pem
 
 ---
 apiVersion: v1
