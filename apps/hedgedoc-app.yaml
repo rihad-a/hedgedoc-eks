@@ -40,13 +40,13 @@ spec:
             - name: NODE_EXTRA_CA_CERTS
               value: "/etc/ssl/certs/global-bundle.pem"
             - name: CMD_EMAIL
-              value: "true"
+              value: true
             - name: CMD_ALLOW_EMAIL_REGISTER
-              value: "true"
+              value: true
             - name: HD_AUTH_LOCAL_ENABLE_LOGIN
-              value: "true"
+              value: true
             - name: HD_AUTH_LOCAL_ENABLE_REGISTER
-              value: "true"
+              value: true
           volumeMounts:
             - name: uploads-store
               mountPath: "/public/uploads"
