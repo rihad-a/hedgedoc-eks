@@ -39,6 +39,8 @@ spec:
               value: "true"
             - name: sslCAPath
               value: "/etc/ssl/certs/global-bundle.pem"
+            - name: sslCertPath
+              value: "/etc/ssl/certs/global-bundle.pem"
           volumeMounts:
             - name: uploads-store
               mountPath: "/public/uploads"
