@@ -37,9 +37,9 @@ spec:
                   key: CMD_URL_ADDPORT
           volumeMounts:
             - name: uploads-store
-              mountPath: "/app/public/uploads"
+              mountPath: "/public/uploads"
             - name: global-bundle-volume
-              mountPath: "/app/etc/ssl/certs"
+              mountPath: "/etc/ssl/certs"
       volumes:
         - name: uploads-store
           emptyDir: {}
