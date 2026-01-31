@@ -59,7 +59,8 @@ spec:
               subPath: global-bundle.pem
       volumes:
         - name: uploads-store
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: efs-static-pvc
         - name: global-bundle-volume
           configMap:
             name: global-bundle
@@ -124,3 +125,43 @@ spec:
     - hosts:
         - hedgedoc.networking.rihad.co.uk
       secretName: hedgedoc-tls
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs-static-sc
+provisioner: efs.csi.aws.com
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-static-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: efs-static-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: 
+    ## Update EFS File System ID after running Terraform Apply and finding resource in AWS
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-static-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-static-sc
+  volumeName: efs-static-pv
+  resources:
+    requests:
+      storage: 5Gi
