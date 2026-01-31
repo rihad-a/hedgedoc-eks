@@ -10,8 +10,8 @@ resource "aws_vpc" "terraform_vpc" {
 
 locals {
   additional_tags = {
-    "kubernetes.io/cluster/eks-cluster"            = "owned"
-    "kubernetes.io/role/elb"                       = "1"
+    "kubernetes.io/cluster/eks-cluster" = "owned"
+    "kubernetes.io/role/elb"            = "1"
   }
 
 }
@@ -62,7 +62,7 @@ resource "aws_subnet" "public_3" {
   map_public_ip_on_launch = var.subnet-map_public_ip_on_launch_public
   availability_zone       = var.subnet-az-2c
 
-  tags                    = local.additional_tags
+  tags = local.additional_tags
 }
 
 resource "aws_subnet" "private_3" {
@@ -71,7 +71,7 @@ resource "aws_subnet" "private_3" {
   map_public_ip_on_launch = var.subnet-map_public_ip_on_launch_private
   availability_zone       = var.subnet-az-2c
 
-  tags                    = local.additional_tags
+  tags = local.additional_tags
 }
 
 resource "aws_nat_gateway" "nat_gw" {
