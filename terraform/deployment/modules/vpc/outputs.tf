@@ -32,7 +32,11 @@ output "subnet-pri3" {
 
 output "pri-subnet-ids" {
   description = "A list of the private subnet ids"
-  value = ["aws_subnet.private_1.id", "aws_subnet.private_2.id", "aws_subnet.private_3.id"]
+  value = [
+    aws_subnet.private_1.id, 
+    aws_subnet.private_2.id, 
+    aws_subnet.private_3.id
+  ]
 }
 
 output "vpc-id" {
