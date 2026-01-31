@@ -76,7 +76,7 @@ module "pod-identity-association" {
 
 # EFS module
 
-module "pod-identity-association" {
+module "efs" {
   source = "./modules/efs"
 
   efs-name                = var.efs-name
@@ -87,5 +87,8 @@ module "pod-identity-association" {
   # Use these outputs
   pri-subnet-ids = module.aws_vpc.pri-subnet-ids
   vpc-id         = module.aws_vpc.vpc-id
-  vpc-cidr       = module.aws_vpc.vpc-cidr
+  vpc-cidr       = module.aws_vpc.vpc-
+  
+
+  depends_on = [module.eks, module.aws_vpc]
 }
