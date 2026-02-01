@@ -57,7 +57,7 @@ spec:
               value: "true"
           volumeMounts:
             - name: uploads-store
-              mountPath: "/public/uploads"
+              mountPath: "/app/public/uploads"
             - name: global-bundle-volume
               mountPath: "/etc/ssl/certs/global-bundle.pem"
               subPath: global-bundle.pem
