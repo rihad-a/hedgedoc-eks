@@ -92,3 +92,35 @@ module "efs" {
 
   depends_on = [module.eks, module.aws_vpc]
 }
+
+# EFS module
+
+module "rds" {
+  source = "./modules/rds"
+
+  allocated-storage                = var.allocated-storage
+  engine                           = var.engine
+  engine-version                   = var.engine-version
+  instance-class                   = var.instance-class
+  password-length                  = var.password-length
+  secretsmanager-name              = var.secretsmanager-name
+  kmskey-deletionwindow            = var.kmskey-deletionwindow
+  secretsmanager-recoverywindow    = var.secretsmanager-recoverywindow
+  db-identifier                    = var.db-identifier
+  db-storagetype                   = var.db-storagetype
+  db-username                      = var.db-username
+  db-parameter-group-name          = var.db-parameter-group-name
+  db-skipfinalsnapshot             = var.db-skipfinalsnapshot
+  db-publicaccess                  = var.db-publicaccess
+  db-multiaz                       = var.db-multiaz
+  db-backupretention               = var.db-backupretention
+
+  # Use these outputs
+  subnet-pri1    = module.aws_vpc.subnet-pri1
+  subnet-pri2    = module.aws_vpc.subnet-pri2
+  subnet-pri3    = module.aws_vpc.subnet-pri3
+  vpc-id         = module.aws_vpc.vpc-id
+  ekscluster-id  = module.eks.ekscluster-id
+  
+  depends_on = [module.eks, module.aws_vpc]
+}

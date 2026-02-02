@@ -51,3 +51,21 @@ efs-sgname     = "efs-sg"
 posix_user_uid = 1001
 posix_user_gid = 1001
 
+# RDS
+
+allocated-storage             = 20
+engine                        = "postgresql"
+engine-version                = "17.6-R2"
+instance-class                = "db.t3.micro"
+password-length               = 16
+secretsmanager-name           = "rds"
+kmskey-deletionwindow         = 7
+secretsmanager-recoverywindow = 14
+db-identifier                 = "appdb"
+db-storagetype                = "gp2"
+db-username                   = "admin"
+db-parameter-group-name       = "default.postgres17"
+db-skipfinalsnapshot          = true
+db-publicaccess               = false
+db-multiaz                    = false
+db-backupretention            = 7
