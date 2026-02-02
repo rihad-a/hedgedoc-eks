@@ -93,7 +93,7 @@ module "efs" {
   depends_on = [module.eks, module.aws_vpc]
 }
 
-# EFS module
+# RDS module
 
 module "rds" {
   source = "./modules/rds"
