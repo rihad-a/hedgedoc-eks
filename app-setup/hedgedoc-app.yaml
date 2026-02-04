@@ -105,10 +105,7 @@ parameters:
   provisioningMode: efs-ap
   fileSystemId: fs-0f23b6e79cf305089
   directoryPerms: 700
-  gidRangeStart: "9999"
-  gidRangeEnd: "10001"
-  basePath: "/dynamic_provisioning"
-allowVolumeExpansion: true
+
 
 ---
 apiVersion: v1
