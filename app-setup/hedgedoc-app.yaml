@@ -46,7 +46,7 @@ spec:
       volumes:
         - name: uploads-store
           persistentVolumeClaim:
-            claimName: efs-pvc
+            claimName: efs-dynamic-pvc
         - name: global-bundle-volume
           configMap:
             name: global-bundle
@@ -99,39 +99,27 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: efs-sc
+  name: efs-dynamic-sc
 provisioner: efs.csi.aws.com
-volumeBindingMode: WaitForFirstConsumer 
-
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: efs-pv
-spec:
-  capacity:
-    storage: 1Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: efs-sc
-  csi:
-    driver: efs.csi.aws.com
-    volumeHandle: fs-0f23b6e79cf305089
-    ## Update EFS File System ID after running Terraform Apply and finding resource in AWS
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: fs-0f23b6e79cf305089
+  directoryPerms: "700"
+  gidRangeStart: "1000"
+  gidRangeEnd: "2000"
+  basePath: "/dynamic_provisioning"
+allowVolumeExpansion: true
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: efs-pvc
-  namespace: hedgedoc-app
+  name: efs-dynamic-pvc
+  namespace: default
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: efs-sc
-  volumeName: efs-pv
+  storageClassName: efs-dynamic-sc
   resources:
     requests:
       storage: 1Gi
