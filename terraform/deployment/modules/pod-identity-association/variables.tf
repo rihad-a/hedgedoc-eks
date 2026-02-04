@@ -75,6 +75,26 @@ variable "efs-csi-driver-sa" {
   description = "The service account of the efs csi driver"
 }
 
+variable "eso-rolename" {
+  type        = string
+  description = "The name of the efs csi driver role"
+}
+
+variable "eso-policyname" {
+  type        = string
+  description = "The name of the efs csi driver policy"
+}
+
+variable "eso-namespace" {
+  type        = string
+  description = "The namespace of the efs csi driver"
+}
+
+variable "eso-sa" {
+  type        = string
+  description = "The service account of the efs csi driver"
+}
+
 
 # Module Variables 
 

@@ -20,6 +20,17 @@ helm install external-dns oci://registry-1.docker.io/bitnamicharts/external-dns 
      --namespace external-dns \
     --create-namespace \
 
+# Adding External Secrets Operator repo
+echo "Adding External Secrets Operator repo" && \
+helm repo add external-secrets https://charts.external-secrets.io \
+
+# Installing External Secrets Operator
+echo "Installing External Secrets Operator" && \
+helm install external-secrets external-secrets/external-secrets \
+    --version 1.3.1 \
+    --namespace external-secrets \
+    --create-namespace \
+
 # Installing Certificate Manager
 echo "Installing Certificate Manager" && \
 helm install cert-manager oci://quay.io/jetstack/charts/cert-manager -f helm-values/cert-manager.yaml \
@@ -45,29 +56,18 @@ helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f
     --namespace kube-prometheus-stack \
     --create-namespace \
 
-# Adding External Secrets Operator repo
-echo "Adding External Secrets Operator repo" && \
-helm repo add external-secrets https://charts.external-secrets.io \
-
-# Installing External Secrets Operator
-echo "Installing External Secrets Operator" && \
+# Creating the hedgedoc-app namespace
+echo "Creating the hedgedoc-app namespace" && \
 cd .. && \
-helm install external-secrets external-secrets/external-secrets \
-    --version 1.3.1 \
-    --namespace external-secret \
-    --create-namespace \
+kubectl create namespace hedgedoc-app  \
 
 # Applying Secret Store Yaml
 echo "Applying Secret Store Yaml" && \
 kubectl apply -f secrets-manager/secret-store.yaml \
 
-# Creating the hedgedoc-app namespace
-echo "Creating the hedgedoc-app namespace" && \
-kubectl create namespace hedgedoc-app  \
-
 # Applying External Secret Yaml
 echo "Applying External Secret Yaml" && \
-kubectl apply -f secrets-manager/external-secret.yaml -n hedgedoc-app \
+kubectl apply -f secrets-manager/external-secret.yaml \
 
 # Adding ArgoCD repo
 echo "Adding ArgoCD repo" && \

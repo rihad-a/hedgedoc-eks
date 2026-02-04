@@ -43,6 +43,10 @@ efs-csi-driver-rolename        = "efs-csi-driver-role"
 efs-csi-driver-policyname      = "efs-csi-driver-policy"
 efs-csi-driver-namespace       = "efs-csi-driver"
 efs-csi-driver-sa              = "efs-csi-driver"
+eso-rolename                   = "eso-role"
+eso-policyname                 = "eso-policy"
+eso-namespace                  = "external-secrets"
+eso-sa                         = "external-secrets"
 
 # EFS
 

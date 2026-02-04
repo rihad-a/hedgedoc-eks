@@ -14,16 +14,12 @@ resource "random_password" "password" {
   special          = false
 }
 
-resource "aws_secretsmanager_secret" "rds" {
-  kms_key_id              = aws_kms_key.rds.key_id
-  name                    = var.secretsmanager-name
-  description             = "RDS password"
-  recovery_window_in_days = var.secretsmanager-recoverywindow
-
+data "aws_secretsmanager_secret" "rds" {
+  arn = "arn:aws:secretsmanager:eu-west-2:291759414346:secret:RDS-bvjyZM"
 }
 
 resource "aws_secretsmanager_secret_version" "secret" {
-  secret_id     = aws_secretsmanager_secret.rds.id
+  secret_id     = data.aws_secretsmanager_secret.rds.id
   secret_string = random_password.password.result
 }
 

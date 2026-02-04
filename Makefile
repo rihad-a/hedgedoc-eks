@@ -109,10 +109,21 @@ delete-secretstoreyaml:
 	kubectl delete -f secrets-manager/secret-store.yaml \
 
 uninstall-externalsecretsoperator:
-	helm uninstall external-secrets -n external-secret \
+	helm uninstall external-secrets -n external-secrets \
 
 uninstall-extdns:
 	helm uninstall external-dns -n external-dns \
+
+delete-allnamespaces:
+	kubectl delete namespace \
+    	argo-cd \
+    	cert-manager \
+    	external-dns \
+    	external-secrets \
+    	hedgedoc-app \
+    	kube-prometheus-stack \
+    	nginx-ingress \
+
 
  
 

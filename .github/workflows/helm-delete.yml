@@ -101,7 +101,7 @@ jobs:
     - name: Uninstalling External Secrets Operator
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
-        helm uninstall external-secrets -n external-secret
+        helm uninstall external-secrets -n external-secrets
       continue-on-error: true
         
     - name: Uninstalling External DNS
@@ -110,4 +110,15 @@ jobs:
         cd terraform
         helm uninstall external-dns -n external-dns
       continue-on-error: true
+
+    - name: Delete all namespaces
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}
+        kubectl delete namespace argo-cd
+        kubectl delete namespace cert-manager
+        kubectl delete namespace external-dns
+        kubectl delete namespace external-secrets
+        kubectl delete namespace hedgedoc-app
+        kubectl delete namespace kube-prometheus-stack
+        kubectl delete namespace nginx-ingress
         

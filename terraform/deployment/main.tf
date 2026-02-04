@@ -67,7 +67,10 @@ module "pod-identity-association" {
   efs-csi-driver-policyname      = var.efs-csi-driver-policyname
   efs-csi-driver-namespace       = var.efs-csi-driver-namespace
   efs-csi-driver-sa              = var.efs-csi-driver-sa
-
+  eso-rolename                   = var.eso-rolename
+  eso-policyname                 = var.eso-policyname
+  eso-namespace                  = var.eso-namespace
+  eso-sa                         = var.eso-sa
 
   # Use these outputs
   ekscluster-name = module.eks.ekscluster-name

@@ -50,10 +50,20 @@ echo "Deleting Secret Store Yaml" && \
 kubectl delete -f secrets-manager/secret-store.yaml \
 
 # Uninstalling External Secrets Operator
-echo "Deleting Secret Store Yaml" && \
-helm uninstall external-secrets -n external-secret \
+echo "Uninstalling External Secrets Operator" && \
+helm uninstall external-secrets -n external-secrets \
 
 # Uninstalling External DNS
 echo "Uninstalling External DNS" && \
 helm uninstall external-dns -n external-dns \
 
+# Delete all namespaces
+echo "Delete all namespaces" && \
+kubectl delete namespace \
+    argo-cd \
+    cert-manager \
+    external-dns \
+    external-secrets \
+    hedgedoc-app \
+    kube-prometheus-stack \
+    nginx-ingress
