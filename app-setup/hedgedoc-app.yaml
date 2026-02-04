@@ -129,7 +129,7 @@ spec:
   storageClassName: efs-sc
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-04a65808cb98d5e0b
+    volumeHandle: fs-0dc2d8c33e06616af
     ## Update EFS File System ID after running Terraform Apply and finding resource in AWS
 
 ---
