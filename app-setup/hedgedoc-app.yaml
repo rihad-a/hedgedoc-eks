@@ -101,6 +101,7 @@ kind: StorageClass
 metadata:
   name: efs-sc
 provisioner: efs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer 
 
 ---
 apiVersion: v1
