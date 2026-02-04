@@ -118,7 +118,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: efs-dynamic-sc
+  storageClassName: efs-sc
   resources:
     requests:
       storage: 1Gi
