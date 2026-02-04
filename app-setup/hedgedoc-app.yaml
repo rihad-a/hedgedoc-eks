@@ -15,9 +15,9 @@ spec:
         app: hedgedoc
     spec:
       securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
-        fsGroup: 1001
+        runAsUser: 10000
+        runAsGroup: 10000
+        fsGroup: 10000
       containers:
         - name: hedgedoc
           image: 291759414346.dkr.ecr.eu-west-2.amazonaws.com/eks-project:latest
