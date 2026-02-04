@@ -66,4 +66,4 @@ kubectl delete namespace \
     external-secrets \
     hedgedoc-app \
     kube-prometheus-stack \
-    nginx-ingress
+    nginx-ingress \
