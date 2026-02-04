@@ -35,18 +35,6 @@ spec:
               value: "false"
             - name: NODE_EXTRA_CA_CERTS
               value: "/etc/ssl/certs/global-bundle.pem"
-            - name: CMD_EMAIL
-              value: "true"
-            - name: CMD_ALLOW_EMAIL_REGISTER
-              value: "true"
-            - name: HD_AUTH_LOCAL_ENABLE_LOGIN
-              value: "true"
-            - name: HD_AUTH_LOCAL_ENABLE_REGISTER
-              value: "true"
-            - name: CMD_ALLOW_ANONYMOUS
-              value: "false"
-            - name: CMD_ALLOW_ANONYMOUS_EDITS
-              value: "false"
             - name: CMD_PROTOCOL_USESSL
               value: "true"
           volumeMounts:
