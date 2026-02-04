@@ -48,7 +48,7 @@ resource "aws_efs_access_point" "pod_access_point" {
   }
 
   root_directory {
-    path = "/public/uploads"
+    path = "./public/uploads"
     creation_info {
       owner_gid   = var.posix_user_gid
       owner_uid   = var.posix_user_uid
