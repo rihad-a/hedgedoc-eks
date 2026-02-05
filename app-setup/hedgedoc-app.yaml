@@ -109,7 +109,6 @@ parameters:
   gidRangeEnd: "10000"
   basePath: "/public/uploads"
 allowVolumeExpansion: true
-volumeBindingMode: WaitForFirstConsumer
 
 
 ---
@@ -124,4 +123,4 @@ spec:
   storageClassName: efs-sc
   resources:
     requests:
-      storage: 1Gi
+      storage: 300Mi
