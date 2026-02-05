@@ -123,4 +123,4 @@ spec:
   storageClassName: efs-sc
   resources:
     requests:
-      storage: 300Mi
+      storage: 1Gi
