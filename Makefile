@@ -111,14 +111,8 @@ deletecrd-argocd:
 delete-externalsecretyaml:
 	kubectl delete -f secrets-manager/external-secret.yaml \
 
-delete-clusterexternalsecretyaml:
-	kubectl delete -f secrets-manager/cluster-external-secret.yaml \
-
 delete-secretstoreyaml:
 	kubectl delete -f secrets-manager/secret-store.yaml \
-
-delete-clustersecretstoreyaml:
-	kubectl delete -f secrets-manager/cluster-secret-store.yaml \
 
 uninstall-externalsecretsoperator:
 	helm uninstall external-secrets -n external-secrets \

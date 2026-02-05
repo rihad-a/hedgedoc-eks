@@ -45,17 +45,9 @@ kubectl delete crd \
 echo "Deleting External Secret Yaml" && \
 kubectl delete -f secrets-manager/external-secret.yaml \
 
-# Deleting Cluster External Secret Yaml
-echo "Deleting Cluster External Secret Yaml" && \
-kubectl delete -f secrets-manager/cluster-external-secret.yaml \
-
 # Deleting Secret Store Yaml
 echo "Deleting Secret Store Yaml" && \
 kubectl delete -f secrets-manager/secret-store.yaml \
-
-# Deleting Cluster Secret Store Yaml
-echo "Deleting Cluster Secret Store Yaml" && \
-kubectl delete -f secrets-manager/cluster-secret-store.yaml \
 
 # Uninstalling External Secrets Operator
 echo "Uninstalling External Secrets Operator" && \

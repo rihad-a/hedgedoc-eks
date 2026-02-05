@@ -92,22 +92,10 @@ jobs:
         kubectl delete -f secrets-manager/external-secret.yaml
       continue-on-error: true
 
-    - name: Deleting Cluster External Secret Yaml
-      run:  |
-        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
-        kubectl delete -f secrets-manager/cluster-external-secret.yaml
-      continue-on-error: true
-
     - name: Deleting Secret Store Yaml
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
         kubectl delete -f secrets-manager/secret-store.yaml
-      continue-on-error: true
-
-    - name: Deleting Cluster Secret Store Yaml
-      run:  |
-        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
-        kubectl delete -f secrets-manager/cluster-secret-store.yaml
       continue-on-error: true
 
     - name: Uninstalling External Secrets Operator

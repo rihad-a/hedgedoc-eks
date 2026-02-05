@@ -65,17 +65,9 @@ kubectl create namespace hedgedoc-app  \
 echo "Applying Secret Store Yaml" && \
 kubectl apply -f secrets-manager/secret-store.yaml \
 
-# Applying Cluster Secret Store Yaml
-echo "Applying Cluster Secret Store Yaml" && \
-kubectl apply -f secrets-manager/cluster-secret-store.yaml \
-
 # Applying External Secret Yaml
 echo "Applying External Secret Yaml" && \
 kubectl apply -f secrets-manager/external-secret.yaml \
-
-# Applying Cluster External Secret Yaml
-echo "Applying Cluster External Secret Yaml" && \
-kubectl apply -f secrets-manager/cluster-external-secret.yaml \
 
 # Adding ArgoCD repo
 echo "Adding ArgoCD repo" && \

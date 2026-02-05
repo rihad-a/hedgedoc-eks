@@ -99,23 +99,11 @@ jobs:
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
         kubectl apply -f secrets-manager/secret-store.yaml
       continue-on-error: true
-
-    - name: Applying Cluster Secret Store Yaml
-      run:  |
-        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
-        kubectl apply -f secrets-manager/cluster-secret-store.yaml
-      continue-on-error: true
         
     - name: Applying External Secret Yaml
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
         kubectl apply -f secrets-manager/external-secret.yaml
-      continue-on-error: true
-
-    - name: Applying Cluster External Secret Yaml
-      run:  |
-        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
-        kubectl apply -f secrets-manager/cluster-external-secret.yaml
       continue-on-error: true
 
     - name: Adding ArgoCD Repo
