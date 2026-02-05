@@ -108,7 +108,6 @@ parameters:
   gidRangeStart: "10000"
   gidRangeEnd: "10001"
   basePath: "/public/uploads"
-  ensureUniqueDirectory: "false"
 allowVolumeExpansion: true
 
 
