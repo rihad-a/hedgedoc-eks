@@ -14,7 +14,7 @@ env:
   CLUSTER_NAME : "eks-cluster"
 
 jobs:
-  HelmDelete:
+  Delete:
     runs-on: ubuntu-24.04
     steps:
 
@@ -129,6 +129,7 @@ jobs:
         kubectl delete namespace nginx-ingress
 
     - name: Deleting all the files of the S3 bucket dedicated to media uploads
-      run: aws s3 rm s3://s3-mediaupload --recursive
+      run:  |
+        aws s3 rm s3://s3-mediaupload --recursive
       continue-on-error: true
         
