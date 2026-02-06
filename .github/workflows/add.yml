@@ -1,4 +1,4 @@
-name: Adding and installing all Helm resources
+name: Adding and installing all resources
 
 on:
   workflow_dispatch:

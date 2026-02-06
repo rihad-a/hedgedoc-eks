@@ -1,4 +1,4 @@
-name: Deleting and uninstalling all helm resources
+name: Deleting and uninstalling all resources
 
 on:
   workflow_dispatch:
@@ -127,4 +127,8 @@ jobs:
         kubectl delete namespace hedgedoc-app
         kubectl delete namespace kube-prometheus-stack
         kubectl delete namespace nginx-ingress
+
+    - name: Deleting all the files of the S3 bucket dedicated to media uploads
+      run: aws s3 rm s3://s3-mediaupload --recursive
+      continue-on-error: true
         

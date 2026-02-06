@@ -71,3 +71,7 @@ kubectl delete namespace \
     hedgedoc-app \
     kube-prometheus-stack \
     nginx-ingress \
+
+# Deleting all the files of the S3 bucket dedicated to media uploads
+echo "Deleting all the files of the S3 bucket dedicated to media uploads" && \
+aws s3 rm s3://s3-mediaupload --recursive \
