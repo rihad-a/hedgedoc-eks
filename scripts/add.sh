@@ -69,6 +69,10 @@ kubectl apply -f secrets-manager/secret-store.yaml \
 echo "Applying External Secret Yaml" && \
 kubectl apply -f secrets-manager/external-secret.yaml \
 
+# Applying S3 External Secret Yaml
+echo "Applying S3 External Secret Yaml" && \
+kubectl apply -f secrets-manager/external-secret-s3.yaml \
+
 # Adding ArgoCD repo
 echo "Adding ArgoCD repo" && \
 helm repo add argo https://argoproj.github.io/argo-helm \

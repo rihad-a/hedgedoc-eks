@@ -176,56 +176,34 @@ variable "extdns-sa" {
 
 }
 
-variable "efs-csi-driver-rolename" {
-  type        = string
-  description = "The name of the efs csi driver role"
-}
-
-variable "efs-csi-driver-policyname" {
-  type        = string
-  description = "The name of the efs csi driver policy"
-}
-
 variable "eso-rolename" {
   type        = string
-  description = "The name of the efs csi driver role"
+  description = "The name of the eso role"
 }
 
 variable "eso-policyname" {
   type        = string
-  description = "The name of the efs csi driver policy"
+  description = "The name of the eso policy"
 }
 
 variable "eso-namespace" {
   type        = string
-  description = "The namespace of the efs csi driver"
+  description = "The namespace of the eso"
 }
 
 variable "eso-sa" {
   type        = string
-  description = "The service account of the efs csi driver"
+  description = "The service account of the eso"
 }
 
-# EFS Variables
-
-variable "efs-name" {
-  type = string
-  description = "The EFS name"
+variable "s3-rolename" {
+  type        = string
+  description = "The name of the efs csi driver role"
 }
 
-variable "efs-sgname" {
-  type = string
-  description = "The EFS sg name"
-}
-
-variable "posix_user_uid" {
-  description = "POSIX user ID for EFS access point"
-  type        = number
-}
-
-variable "posix_user_gid" {
-  description = "POSIX group ID for EFS access point"
-  type        = number
+variable "s3-policyname" {
+  type        = string
+  description = "The name of the efs csi driver policy"
 }
 
 # RDS Variables
@@ -309,4 +287,11 @@ variable "db-multiaz" {
 variable "db-backupretention" {
   description = "The number of days for the backup retention period of the database"
   type        = number
+}
+
+# S3
+
+variable "s3-name" {
+  type = string
+  description = "The S3 bucket name"
 }

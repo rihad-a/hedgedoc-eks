@@ -92,6 +92,12 @@ jobs:
         kubectl delete -f secrets-manager/external-secret.yaml
       continue-on-error: true
 
+    - name: Deleting S3 External Secret Yaml
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
+        kubectl delete -f secrets-manager/external-secret-s3.yaml
+      continue-on-error: true
+  
     - name: Deleting Secret Store Yaml
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  

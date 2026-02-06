@@ -55,36 +55,35 @@ variable "extdns-sa" {
   description = "The service account of the certificate manager"
 }
 
-variable "efs-csi-driver-rolename" {
-  type        = string
-  description = "The name of the efs csi driver role"
-}
-
-variable "efs-csi-driver-policyname" {
-  type        = string
-  description = "The name of the efs csi driver policy"
-}
-
 variable "eso-rolename" {
   type        = string
-  description = "The name of the efs csi driver role"
+  description = "The name of the eso role"
 }
 
 variable "eso-policyname" {
   type        = string
-  description = "The name of the efs csi driver policy"
+  description = "The name of the eso policy"
 }
 
 variable "eso-namespace" {
   type        = string
-  description = "The namespace of the efs csi driver"
+  description = "The namespace of the eso"
 }
 
 variable "eso-sa" {
   type        = string
-  description = "The service account of the efs csi driver"
+  description = "The service account of the eso"
 }
 
+variable "s3-rolename" {
+  type        = string
+  description = "The name of the efs csi driver role"
+}
+
+variable "s3-policyname" {
+  type        = string
+  description = "The name of the efs csi driver policy"
+}
 
 # Module Variables 
 

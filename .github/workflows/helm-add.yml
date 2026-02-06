@@ -106,6 +106,12 @@ jobs:
         kubectl apply -f secrets-manager/external-secret.yaml
       continue-on-error: true
 
+    - name: Applying S3 External Secret Yaml
+      run:  |
+        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}  
+        kubectl apply -f secrets-manager/external-secret-s3.yaml
+      continue-on-error: true
+
     - name: Adding ArgoCD Repo
       run:  |
         aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.CLUSTER_NAME }}

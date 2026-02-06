@@ -111,6 +111,9 @@ deletecrd-argocd:
 delete-externalsecretyaml:
 	kubectl delete -f secrets-manager/external-secret.yaml \
 
+delete-s3externalsecretyaml:
+	kubectl delete -f secrets-manager/external-secret-s3.yaml \
+
 delete-secretstoreyaml:
 	kubectl delete -f secrets-manager/secret-store.yaml \
 

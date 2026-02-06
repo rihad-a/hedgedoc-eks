@@ -45,6 +45,10 @@ kubectl delete crd \
 echo "Deleting External Secret Yaml" && \
 kubectl delete -f secrets-manager/external-secret.yaml \
 
+# Deleting S3 External Secret Yaml
+echo "Deleting S3 External Secret Yaml" && \
+kubectl delete -f secrets-manager/external-secret-s3.yaml \
+
 # Deleting Secret Store Yaml
 echo "Deleting Secret Store Yaml" && \
 kubectl delete -f secrets-manager/secret-store.yaml \

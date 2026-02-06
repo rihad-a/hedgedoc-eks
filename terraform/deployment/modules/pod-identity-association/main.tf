@@ -138,16 +138,16 @@ resource "aws_eks_pod_identity_association" "external-dns" {
 
 }
 
-# Setting up EFS CSI Driver
+# Setting up S3 association
 
-resource "aws_iam_role" "efs-csi-driver-role" {
-  name               = var.efs-csi-driver-rolename
+resource "aws_iam_role" "s3-role" {
+  name               = var.s3-rolename
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
-resource "aws_iam_policy" "efs-csi-driver-policy" {
-  name = var.efs-csi-driver-policyname
-  description = "Policy for EFS CSI driver"
+resource "aws_iam_policy" "s3-policy" {
+  name        = var.s3-policyname
+  description = "Policy for S3"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -155,54 +155,49 @@ resource "aws_iam_policy" "efs-csi-driver-policy" {
       {
         Effect = "Allow"
         Action = [
-          "elasticfilesystem:DescribeAccessPoints",
-          "elasticfilesystem:DescribeFileSystems",
-          "elasticfilesystem:DescribeMountTargets",
-          "ec2:DescribeAvailabilityZones"
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:DeleteObject"
         ]
-        Resource = "*"
+        Resource = [
+          "arn:aws:s3:::s3-mediaupload/uploads/*"
+        ]
       },
       {
         Effect = "Allow"
         Action = [
-          "elasticfilesystem:CreateAccessPoint",
-          "elasticfilesystem:TagResource"
+          "s3:ListBucket"
         ]
-        Resource = "*"
-      },
-      {
-        Effect = "Allow"
-        Action = [
-          "elasticfilesystem:DeleteAccessPoint"
+        Resource = [
+          "arn:aws:s3:::s3-mediaupload"
         ]
-        Resource = "*"
-        Condition = {
-          StringEquals = {
-            "elasticfilesystem:AccessedViaMountTarget" = "true"
-          }
-        }
       }
     ]
   })
 }
 
-resource "aws_iam_role_policy_attachment" "efs-csi-driver" {
-  policy_arn = aws_iam_policy.efs-csi-driver-policy.arn
-  role       = aws_iam_role.efs-csi-driver-role.name
+resource "aws_iam_role_policy_attachment" "s3" {
+  policy_arn = aws_iam_policy.s3-policy.arn
+  role       = aws_iam_role.s3-role.name
 }
 
-resource "aws_eks_pod_identity_association" "efs-csi-driver" {
+resource "aws_eks_pod_identity_association" "s3" {
   cluster_name    = var.ekscluster-name
   namespace       = "kube-system"
-  service_account = "efs-csi-controller-sa"
-  role_arn        = aws_iam_role.efs-csi-driver-role.arn
+  service_account = "s3-csi-driver-sa"
+  role_arn        = aws_iam_role.s3-role.arn
 
 }
+
 
 # Setting up role for external secrets operatore (ESO)
 
 data "aws_secretsmanager_secret" "db-url" {
   arn = "arn:aws:secretsmanager:eu-west-2:291759414346:secret:db-url-OJNBM8"
+}
+
+data "aws_secretsmanager_secret" "s3" {
+  arn = "arn:aws:secretsmanager:eu-west-2:291759414346:secret:s3-n92bs6"
 }
 
 resource "aws_iam_role" "eso-role" {

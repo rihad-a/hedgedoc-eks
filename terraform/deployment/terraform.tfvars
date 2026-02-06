@@ -39,19 +39,16 @@ extdns-rolename                = "external-dns-role"
 extdns-policyname              = "external-dns-policy"
 extdns-namespace               = "external-dns"
 extdns-sa                      = "external-dns"
-efs-csi-driver-rolename        = "efs-csi-driver-role"
-efs-csi-driver-policyname      = "efs-csi-driver-policy"
+s3-rolename                    = "s3-role"
+s3-policyname                  = "s3-policy"
 eso-rolename                   = "eso-role"
 eso-policyname                 = "eso-policy"
 eso-namespace                  = "external-secrets"
 eso-sa                         = "external-secrets"
 
-# EFS
+# S3
 
-efs-name       = "eks-efs"
-efs-sgname     = "efs-sg"
-posix_user_uid = 10000
-posix_user_gid = 10000
+s3-name                       = "s3-mediaupload"
 
 # RDS
 
@@ -71,3 +68,5 @@ db-skipfinalsnapshot          = true
 db-publicaccess               = false
 db-multiaz                    = false
 db-backupretention            = 7
+
+

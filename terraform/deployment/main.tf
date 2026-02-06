@@ -63,8 +63,8 @@ module "pod-identity-association" {
   extdns-policyname              = var.extdns-policyname
   extdns-namespace               = var.extdns-namespace
   extdns-sa                      = var.extdns-sa
-  efs-csi-driver-rolename        = var.efs-csi-driver-rolename
-  efs-csi-driver-policyname      = var.efs-csi-driver-policyname
+  s3-rolename                    = var.s3-rolename
+  s3-policyname                  = var.s3-policyname
   eso-rolename                   = var.eso-rolename
   eso-policyname                 = var.eso-policyname
   eso-namespace                  = var.eso-namespace
@@ -75,23 +75,15 @@ module "pod-identity-association" {
 
 }
 
-# EFS module
+# S3 module
 
-module "efs" {
-  source = "./modules/efs"
+module "s3" {
+  source = "./modules/s3"
 
-  efs-name                = var.efs-name
-  efs-sgname              = var.efs-sgname
-  posix_user_uid          = var.posix_user_uid
-  posix_user_gid          = var.posix_user_gid
+  s3-name                 = var.s3-name
 
   # Use these outputs
-  pri-subnet-ids = module.aws_vpc.pri-subnet-ids
-  vpc-id         = module.aws_vpc.vpc-id
-  ekscluster-name = module.eks.ekscluster-name
-  
 
-  depends_on = [module.eks, module.aws_vpc]
 }
 
 # RDS module
