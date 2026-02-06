@@ -33,10 +33,8 @@ resource "aws_eks_cluster" "eks" {
     subnet_ids = [
       var.subnet-pri1,
       var.subnet-pri2,
-      var.subnet-pri3,
       var.subnet-pub1,
-      var.subnet-pub2,
-      var.subnet-pub3
+      var.subnet-pub2
     ]
   }
   access_config {
@@ -69,8 +67,7 @@ resource "aws_eks_node_group" "eks-node-group" {
   capacity_type   = var.ng-capacitytype
   subnet_ids = [
     var.subnet-pri1,
-    var.subnet-pri2,
-    var.subnet-pri3
+    var.subnet-pri2
   ]
 
   scaling_config {

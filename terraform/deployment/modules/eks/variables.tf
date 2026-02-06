@@ -62,11 +62,6 @@ variable "subnet-pub2" {
   description = "Public Subnet 2 ID"
 }
 
-variable "subnet-pub3" {
-  type        = string
-  description = "Public Subnet 3 ID"
-}
-
 variable "subnet-pri1" {
   type        = string
   description = "Private Subnet 1 ID"
@@ -75,9 +70,4 @@ variable "subnet-pri1" {
 variable "subnet-pri2" {
   type        = string
   description = "Private Subnet 2 ID"
-}
-
-variable "subnet-pri3" {
-  type        = string
-  description = "Private Subnet 3 ID"
 }

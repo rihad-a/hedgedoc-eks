@@ -6,13 +6,10 @@ module "aws_vpc" {
   vpc-cidr                               = var.vpc-cidr
   subnet-cidrblock-pub1                  = var.subnet-cidrblock-pub1
   subnet-cidrblock-pub2                  = var.subnet-cidrblock-pub2
-  subnet-cidrblock-pub3                  = var.subnet-cidrblock-pub3
   subnet-cidrblock-pri1                  = var.subnet-cidrblock-pri1
   subnet-cidrblock-pri2                  = var.subnet-cidrblock-pri2
-  subnet-cidrblock-pri3                  = var.subnet-cidrblock-pri3
   subnet-az-2a                           = var.subnet-az-2a
   subnet-az-2b                           = var.subnet-az-2b
-  subnet-az-2c                           = var.subnet-az-2c
   routetable-cidr                        = var.routetable-cidr
   subnet-map_public_ip_on_launch_public  = var.subnet-map_public_ip_on_launch_public
   subnet-map_public_ip_on_launch_private = var.subnet-map_public_ip_on_launch_private
@@ -40,10 +37,8 @@ module "eks" {
   # Use these outputs
   subnet-pub1 = module.aws_vpc.subnet-pub1
   subnet-pub2 = module.aws_vpc.subnet-pub2
-  subnet-pub3 = module.aws_vpc.subnet-pub3
   subnet-pri1 = module.aws_vpc.subnet-pri1
   subnet-pri2 = module.aws_vpc.subnet-pri2
-  subnet-pri3 = module.aws_vpc.subnet-pri3
 }
 
 
@@ -115,7 +110,6 @@ module "rds" {
   # Use these outputs
   subnet-pri1    = module.aws_vpc.subnet-pri1
   subnet-pri2    = module.aws_vpc.subnet-pri2
-  subnet-pri3    = module.aws_vpc.subnet-pri3
   vpc-id         = module.aws_vpc.vpc-id
   ekscluster-name = module.eks.ekscluster-name
   

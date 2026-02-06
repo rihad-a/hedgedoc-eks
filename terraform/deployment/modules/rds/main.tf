@@ -75,7 +75,7 @@ resource "aws_security_group" "rds-sg" {
 # Creating the subnet group for RDS
 resource "aws_db_subnet_group" "db-subnet-group" {
   name         = "db subnet group"
-  subnet_ids   = [var.subnet-pri1, var.subnet-pri2, var.subnet-pri3]
+  subnet_ids   = [var.subnet-pri1, var.subnet-pri2]
   description  = "The private subnet groups of the vpc"
 
 }

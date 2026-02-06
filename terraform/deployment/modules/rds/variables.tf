@@ -93,11 +93,6 @@ variable "subnet-pri2" {
   description = "Private Subnet 2 ID"
 }
 
-variable "subnet-pri3" {
-  type        = string
-  description = "Private Subnet 3 ID"
-}
-
 variable "vpc-id" {
   type = string
   description = "The vpc id"

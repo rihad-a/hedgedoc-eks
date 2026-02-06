@@ -25,7 +25,4 @@ variable "restrict-public-buckets" {
   description = "A setting to restrict public buckets"
 }
 
-
-
-
 # Module Variables 

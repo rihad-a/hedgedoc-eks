@@ -15,11 +15,6 @@ variable "subnet-cidrblock-pub2" {
   description = "The CIDR block for public subnet 2"
 }
 
-variable "subnet-cidrblock-pub3" {
-  type        = string
-  description = "The CIDR block for public subnet 3"
-}
-
 variable "subnet-cidrblock-pri1" {
   type        = string
   description = "The CIDR block for private subnet 1"
@@ -30,11 +25,6 @@ variable "subnet-cidrblock-pri2" {
   description = "The CIDR block for private subnet 2"
 }
 
-variable "subnet-cidrblock-pri3" {
-  type        = string
-  description = "The CIDR block for private subnet 3"
-}
-
 variable "subnet-az-2a" {
   type        = string
   description = "Availability zone for the 'a' subnets"
@@ -43,11 +33,6 @@ variable "subnet-az-2a" {
 variable "subnet-az-2b" {
   type        = string
   description = "Availability zone for the 'b' subnets"
-}
-
-variable "subnet-az-2c" {
-  type        = string
-  description = "Availability zone for the 'c' subnets"
 }
 
 variable "routetable-cidr" {
