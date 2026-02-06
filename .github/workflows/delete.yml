@@ -130,6 +130,9 @@ jobs:
 
     - name: Deleting all the files of the S3 bucket dedicated to media uploads
       run:  |
+        apt-get -y update
+        apt-get -y install python3-pip
+        pip3 install awscli
         aws s3 rm s3://s3-mediaupload --recursive
       continue-on-error: true
         
