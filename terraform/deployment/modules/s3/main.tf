@@ -33,6 +33,7 @@ data "aws_iam_policy_document" "s3-policy" {
   }
 }
 
+# Adding public access block to allow for a policy to be attached
 
 resource "aws_s3_bucket_public_access_block" "s3-upload" {
   bucket = aws_s3_bucket.s3-upload.id
