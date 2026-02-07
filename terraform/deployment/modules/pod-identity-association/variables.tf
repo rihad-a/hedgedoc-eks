@@ -85,6 +85,17 @@ variable "s3-policyname" {
   description = "The name of the efs csi driver policy"
 }
 
+variable "s3-namespace" {
+  type        = string
+  description = "The namespace of the s3"
+}
+
+variable "s3-sa" {
+  type        = string
+  description = "The service account of the s3"
+}
+
+
 # Module Variables 
 
 variable "ekscluster-name" {
