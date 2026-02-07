@@ -51,7 +51,7 @@ s3-name                       = "s3-mediaupload"
 block-public-acl              = false
 block-public-policy           = false
 ignore-public-acls            = false
-restrict-public-buckets       = true
+restrict-public-buckets       = false
 
 
 # RDS
