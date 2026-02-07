@@ -18,6 +18,7 @@ spec:
         runAsUser: 10000
         runAsGroup: 10000
         fsGroup: 10000
+      serviceAccountName: hedgedoc
       containers:
         - name: hedgedoc
           image: 291759414346.dkr.ecr.eu-west-2.amazonaws.com/eks-project:latest
@@ -39,16 +40,6 @@ spec:
               value: "true"
             - name: CMD_IMAGE_UPLOAD_TYPE
               value: "s3"
-            - name: CMD_S3_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: s3
-                  key: ACCESS_KEY_ID
-            - name: CMD_S3_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: s3
-                  key: SECRET_ACCESS_KEY 
             - name: CMD_S3_REGION
               value: "eu-west-2"                     
             - name: CMD_S3_BUCKET
