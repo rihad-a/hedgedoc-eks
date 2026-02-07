@@ -1,3 +1,5 @@
+# Installing and applying all relevant resources
+
 addrepo-nginx:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx \
 
@@ -69,6 +71,8 @@ install-argocd:
 
 apply-argoapp:
 	kubectl apply -f argo-cd/apps-argo.yaml \
+
+# Uninstalling and deleting all relevant resources
 
 uninstall-nginx:
 	helm uninstall nginx-ingress -n nginx-ingress \
