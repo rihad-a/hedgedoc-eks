@@ -228,7 +228,7 @@ cd ../bootstrap && terraform destroy
 
 <br>
 
-## Videos and Images
+## Images & Video
 
 <div align="center">
   
