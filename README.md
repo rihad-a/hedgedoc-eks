@@ -1,4 +1,4 @@
-# HedgeDoc on AWS EKS
+# Project HedgeDoc
 
 This project automates the deployment of the **HedgeDoc Application** using **AWS EKS**, **Terraform**, **Docker**, **Helm**, and **CI/CD pipelines**. Originally set up manually using **AWS Console**, the process has been fully automated to provide a secure, scalable, and streamlined Kubernetes deployment.
 
@@ -211,6 +211,7 @@ cd terraform/deployment && terraform destroy
 cd ../bootstrap && terraform destroy
 ```
 
+
 <br>
 
 ## Additional Resources
@@ -222,9 +223,18 @@ cd ../bootstrap && terraform destroy
 - [Kubernetes Documentation](https://kubernetes.io/docs/)
 - [Argo CD Documentation](https://argo-cd.readthedocs.io/)
 
+
+
+
+<br>
+
+## Videos and Images
+
+<div align="center">
+  
 |Here's a demo of the working application:|
 |-------|
-| https://github.com/user-attachments/assets/6c4ce4b3-2664-4305-bf55-e0c75d6dd442 |
+|  [![App Demo](https://raw.githubusercontent.com/Rihad-A/hedgedoc-eks/main/media/video-thumbnail.png)](https://github.com/user-attachments/assets/6c4ce4b3-2664-4305-bf55-e0c75d6dd442)  | 
 
 
 |The SSL Certificate:|
