@@ -17,14 +17,15 @@ data "aws_iam_policy_document" "s3-policy" {
     effect = "Allow"
 
     principals {
-      type        = "*"
-      identifiers = [var.s3-role-arn]
+      type        = "AWS"
+      identifiers = [
+        var.s3-role-arn,
+        "arn:aws:iam::291759414346:user/rihad"
+      ]
     }
 
     actions = [
-      "s3:GetObject",
-      "s3:PutObject",
-      "s3:DeleteObject"
+      "s3:*"
     ]
 
     resources = [

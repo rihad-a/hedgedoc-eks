@@ -42,7 +42,9 @@ spec:
             - name: CMD_S3_REGION
               value: "eu-west-2"                     
             - name: CMD_S3_BUCKET
-              value: "s3-mediaupload"                         
+              value: "s3-mediaupload"    
+            - name: CMD_S3_ACL
+              value: "public-read"
           volumeMounts:
             - name: global-bundle-volume
               mountPath: "/etc/ssl/certs/global-bundle.pem"

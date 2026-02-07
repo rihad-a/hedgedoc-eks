@@ -48,9 +48,9 @@ eso-sa                         = "external-secrets"
 # S3
 
 s3-name                       = "s3-mediaupload"
-block-public-acl              = true
+block-public-acl              = false
 block-public-policy           = false
-ignore-public-acls            = true
+ignore-public-acls            = false
 restrict-public-buckets       = true
 
 
