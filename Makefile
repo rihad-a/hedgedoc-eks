@@ -133,7 +133,7 @@ delete-allnamespaces:
     	kube-prometheus-stack \
     	nginx-ingress \
 
-delete-s3mediauploadfiles:
+delete-s3mediauploads:
 	aws s3 rm s3://s3-mediaupload --recursive \
  
 
