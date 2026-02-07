@@ -60,6 +60,8 @@ module "pod-identity-association" {
   extdns-sa                      = var.extdns-sa
   s3-rolename                    = var.s3-rolename
   s3-policyname                  = var.s3-policyname
+  s3-namespace                   = var.s3-namespace
+  s3-sa                          = var.s3-sa
   eso-rolename                   = var.eso-rolename
   eso-policyname                 = var.eso-policyname
   eso-namespace                  = var.eso-namespace
@@ -82,7 +84,7 @@ module "s3" {
   restrict-public-buckets = var.restrict-public-buckets
 
   # Use these outputs
-
+  s3-role-arn             = module.pod-identity-association.s3-role-arn
 }
 
 # RDS module

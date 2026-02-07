@@ -26,3 +26,8 @@ variable "restrict-public-buckets" {
 }
 
 # Module Variables 
+
+variable "s3-role-arn" {
+  type       = string
+  description = "The S3 role ARN"
+}

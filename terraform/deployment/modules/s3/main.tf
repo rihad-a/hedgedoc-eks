@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "s3-policy" {
 
     principals {
       type        = "*"
-      identifiers = ["*"]
+      identifiers = [var.s3-role-arn]
     }
 
     actions = [

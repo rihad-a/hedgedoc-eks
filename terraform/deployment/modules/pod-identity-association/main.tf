@@ -183,8 +183,8 @@ resource "aws_iam_role_policy_attachment" "s3-policy" {
 
 resource "aws_eks_pod_identity_association" "s3" {
   cluster_name    = var.ekscluster-name
-  namespace       = "kube-system"
-  service_account = "s3-csi-driver-sa"
+  namespace       = var.s3-namespace
+  service_account = var.s3-sa
   role_arn        = aws_iam_role.s3-role.arn
 
 }
@@ -194,10 +194,6 @@ resource "aws_eks_pod_identity_association" "s3" {
 
 data "aws_secretsmanager_secret" "db-url" {
   arn = "arn:aws:secretsmanager:eu-west-2:291759414346:secret:db-url-OJNBM8"
-}
-
-data "aws_secretsmanager_secret" "s3" {
-  arn = "arn:aws:secretsmanager:eu-west-2:291759414346:secret:s3-n92bs6"
 }
 
 resource "aws_iam_role" "eso-role" {
