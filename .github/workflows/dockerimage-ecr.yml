@@ -34,7 +34,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
     - name: Authenticating docker client to Amazon ECR registry 
-      run: aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.EKS_REPOSITORY }} 
+      run: aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY }} 
 
     - name: Building docker image
       run: docker build -t hedgedoc1 -t hedgedoc2 ./app
@@ -55,10 +55,10 @@ jobs:
 
     - name: Tagging image to ECR repository
       run: |
-        docker tag hedgedoc1 ${{ secrets.EKS_REPOSITORY }}:${{ github.sha }}
-        docker tag hedgedoc2 ${{ secrets.EKS_REPOSITORY }}:latest
+        docker tag hedgedoc1 ${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
+        docker tag hedgedoc2 ${{ secrets.ECR_REPOSITORY }}:latest
 
     - name: Pushing docker image
-      run: docker push ${{ secrets.EKS_REPOSITORY }} --all-tags
+      run: docker push ${{ secrets.ECR_REPOSITORY }} --all-tags
 
       
